@@ -28,7 +28,7 @@ export default function Home() {
 
                 <SectionHeader
                     wrapperClass="Services"
-                    bgImg={textContainerImg} // ✅ sửa
+                    bgImg={textContainerImg} 
                     title="Our Services"
                     desc="Transform your brand with our innovative digital solutions that captivate and engage your audience."
                 />
@@ -36,14 +36,14 @@ export default function Home() {
                 <ServiceCards />
 
                 <div className="Services1">
-                    <img src={containerImg} alt="" /> {/* ✅ sửa */}
+                    <img src={containerImg} alt="" /> 
                 </div>
 
                 <FeaturesTable />
 
                 <div className="wapper_ni">
                     <div className="Services2">
-                        <img src={containerImg} alt="" /> {/* ✅ sửa */}
+                        <img src={containerImg} alt="" />
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@ export default function Home() {
 
                 <div className="wapper_ni">
                     <div className="Services2">
-                        <img src={containerImg} alt="" /> {/* ✅ sửa */}
+                        <img src={containerImg} alt="" />
                     </div>
                 </div>
 

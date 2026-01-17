@@ -5,7 +5,7 @@ import linkedin from "../../assets/in.png";
 
 import emailIcon from "../../assets/emaill.png";
 import phoneIcon from "../../assets/sdt.png";
-import locationIcon from "../../assets/dc.png";
+import locationIcon from "../../assets/dt.png";
 
 export default function Footer() {
     return (
