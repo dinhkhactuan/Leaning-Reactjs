@@ -13,7 +13,6 @@ import ContactForm from "../ContactForm/ContactForm";
 
 import "../styles/Desktop.css";
 
-// ✅ IMPORT ẢNH từ src/assets
 import textContainerImg from "../assets/Text Container.png";
 import containerImg from "../assets/Container.png";
 
