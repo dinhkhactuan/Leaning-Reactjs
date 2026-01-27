@@ -1,67 +1,71 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import InforUser from "./components/InforUser";
-import Title from "./components/Title";
+import { enPoint } from "./const/Enpoint";
 
 const App = () => {
-  // hook của reactjs
-  // useState, useEffect, useMemo, useContext, useCallback, useRef
-  // re-render -> chạy lại components
-  // useState - nó sẽ là trang thái cua components re-render theo state
-  const [text, setText] = useState("hello")
-  const [a, setA] = useState(1)
-  const [dataUser, setDataUser] = useState([])
+  const [dataUser, setDataUser] = useState([]);
+  const [username, setUsername] = useState("");
+  const [avatar, setAvatar] = useState("");
+  const [user, setUser] = useState(null);
+  const [isDelete, setIsDelete] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(
-        "https://69606493e7aa517cb795f700.mockapi.io/users",
-      );
-      res.json().then((data) => {
-        setDataUser(data)
+    fetch(enPoint())
+      .then((res) => res.json())
+      .then((data) => setDataUser(data))
+      .catch((err) => {
+        console.log(err);
       });
-    };
+  }, [isDelete]);
 
-    fetchData();
-    // call api
-  }, []);
+  useEffect(() => {
+    if (user?.id) {
+      fetch(enPoint(user?.id), { method: "delete" })
+        .then((data) => data.json())
+        .then((data) => {setIsDelete(!isDelete)});
+    }
+  }, [user?.id]);
 
-  console.log(dataUser);
-  
+  const handleSubmit = () => {};
 
-  useEffect(()=>{
-    setA(20)
-    
-  }, [])
+  const handleDelete = (user) => {
+    setUser(user);
+  };
 
-  // có cách sử dụng
-  // th1 ko có dependencies
-  // - luôn chạy khi component được re-render lần đầu 
-  // - luôn chạy khi component đc re-render
-  // th2 có dependencies là []
-  // - luôn chạy khi component được re-render lần đầu
-  // - re-render lần tiếp theo ko gọi lại useEffect
-  // th3 có dependencies là [biến]
-  // - luôn chạy khi component được re-render lần đầu
-  // - gọi lại useEffect khi value dependencies thay đổi
-
-  const handleChangesText = ()=>{
-    setText("welcones")
-  }
+  const handleEdit = (user) => {};
 
   return (
-    <div className="App">
-      <p>{text}</p>
-      <p>{a}</p>
-      {dataUser.map((item)=> {
+    <div className="container">
+      <h2>User Manager</h2>
 
-        return <InforUser name={item.username}/>
-      })}
-      <button
-        onClick={handleChangesText}
-      >
-        render
-      </button>
+      <div className="form">
+        <input
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        <input
+          placeholder="Avatar URL"
+          value={avatar}
+          onChange={(e) => setAvatar(e.target.value)}
+        />
+
+        <button className="btn submit" onClick={handleSubmit}>
+          {"Thêm user"}
+        </button>
+      </div>
+
+      <div className="list">
+        {dataUser.map((user) => (
+          <InforUser
+            key={user.id}
+            user={user}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+          />
+        ))}
+      </div>
     </div>
   );
 };

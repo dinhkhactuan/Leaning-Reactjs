@@ -1,18 +1,23 @@
-const InforUser = ({ name }) => {
+const InforUser = ({ user, onDelete, onEdit, setUser }) => {
+  
   return (
-    <>
-      <header className="App-header">
-        <p>{name}</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ""
-        </a>
-      </header>
-    </>
+    <div className="user-card">
+      <img className="avatar" src={user.avatar} alt={user.username} />
+
+      <div className="user-info">
+        <h4>{user.username}</h4>
+        <span>ID: {user.id}</span>
+      </div>
+
+      <div className="actions">
+        <button className="btn edit" onClick={() => onEdit(user)}>
+          ✏️
+        </button>
+        <button className="btn delete" onClick={() => onDelete(user)}>
+          🗑️
+        </button>
+      </div>
+    </div>
   );
 };
 
