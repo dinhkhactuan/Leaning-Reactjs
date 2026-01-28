@@ -1,5 +1,5 @@
 import React from 'react'
-import abstractImg from "../../assets/Abstract Design.png";
+import anh1 from "../../assets/Abstract Design.png";
 export default function Hero() {
     return (
         <div className="box-header">
@@ -26,7 +26,7 @@ export default function Hero() {
                 <button className="contact_btn">Contact Us</button>
             </div>
 
-            <img src={abstractImg} alt="" className="bieudo" />
+            <img src={anh1} alt="" className="bieudo" />
 
             <div className="btn_end">Trusted By 250+ Companies</div>
         </div>

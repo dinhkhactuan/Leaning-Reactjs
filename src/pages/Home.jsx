@@ -19,7 +19,7 @@ import containerImg from "../assets/Container.png";
 export default function Home() {
     return (
         <>
-            <Navbar />
+            <Navbar /> 
 
             <div className="main">
                 <Hero />
