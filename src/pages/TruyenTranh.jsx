@@ -2,7 +2,7 @@
 
 import Containerfert from "../components/containertrai/Containerfert";
 import Containeright from "../containeright/Containeright";
-import "../styles/Styletruyentranh.css";
+// import "../styles/Styletruyentranh.css";
 const Api = "https://zelda.fanapis.com/api/characters"
 export default function TruyenTranh({ character }) {
     console.log(character);
