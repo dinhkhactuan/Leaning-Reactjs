@@ -1,10 +1,13 @@
-import React from "react";
+import "../src/UI-UX/Styles/style.css";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-
+import HeaderPage from "./UI-UX/Header/Header";
+import Content from "./UI-UX/Container/Content";
+import Footer from "./UI-UX/Footer/Footer";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <div>
-    <App/>
-  </div>
+  <div class="justify">
+    <HeaderPage />
+    <Content />
+    <Footer />
+  </div>,
 );
