@@ -13,7 +13,7 @@ export default function UserCard({ user, Delete, UpdateUser }) {
 
             <div className="actions">
                 <button className="btn-success"
-                    onClick={() => UpdateUser()}
+                    onClick={() => UpdateUser(user)}
                 >
                     <span>
                         <i className="fa-solid fa-pen"></i>

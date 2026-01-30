@@ -10,6 +10,7 @@ export default function KhanhDeptrai() {
   const [user, setuser] = useState(null)
   const [isDelete, setisDelete] = useState(false);
   const [showFrom, setShowForm] = useState(false);
+  const [editingUser, setEditingUser] = useState(null); // add và update
 
   // useEffect(() => {
   //   fetch(enPoint())
@@ -40,6 +41,17 @@ export default function KhanhDeptrai() {
       console.log(error);
     }
   }
+  const updateUser = async (id, payload) => {
+    try {
+      const res = await axios.put(enPoint(id), payload);
+      await getUsers();
+      setShowForm(false);
+      setEditingUser(null);
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
 
   useEffect(() => {
     getUsers()
@@ -63,9 +75,12 @@ export default function KhanhDeptrai() {
   const handleDelete = (user) => {
     setuser(user);
   }
-  const handleUpdate = () => {
-    console.log("Update user");
+  const handleUpdate = (user) => {
+    setEditingUser(user);
+    setShowForm(true)
+
   }
+
   const openAddForm = () => {
     setShowForm(true);
   }
@@ -77,14 +92,25 @@ export default function KhanhDeptrai() {
     <div className="container">
       <Header
         onAdd={openAddForm}
-
       />
-      {showFrom &&
+      {showFrom && (
         <UserModal
-          onClose={CloseAddForm}
-          onSubmit={addUser}
+          onClose={() => {
+            setShowForm(false);
+            setEditingUser(null);
+          }}
+          initialData={editingUser}
+
+          onSubmit={(formData) => {
+            if (editingUser?.id) {
+              updateUser(editingUser.id, formData);
+            } else {
+              addUser(formData);
+            }
+          }}
         />
-      }
+      )}
+
       <UserList
         users={users}
         onDelete={handleDelete}
